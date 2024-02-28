@@ -110,8 +110,10 @@ class ApplySoftmaxBasePredictionPostTransform(PostTransform):
 
 
 class ApplyTweediePostTransform(PostTransform):
+    def __init__(self, power=1.5):
+        self.power = power
     def __call__(self, x):
-        return torch.exp(x)
+        return torch.sign(x) * torch.pow(torch.abs(x), self.power)
 
 
 class ApplyTweedieBasePredictionPostTransform(PostTransform):
