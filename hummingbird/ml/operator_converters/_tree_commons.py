@@ -117,11 +117,12 @@ class ApplyTweediePostTransform(PostTransform):
 
 
 class ApplyTweedieBasePredictionPostTransform(PostTransform):
-    def __init__(self, base_prediction):
+    def __init__(self, base_prediction, power=1.5):
         self.base_prediction = ApplyBasePredictionPostTransform(base_prediction)
+        self.power = power
 
     def __call__(self, x):
-        return ApplyTweediePostTransform()(self.base_prediction(x))
+        return ApplyTweediePostTransform(power=self.power)(self.base_prediction(x))
 
 
 def _find_max_depth(tree_parameters):
