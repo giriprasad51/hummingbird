@@ -160,13 +160,13 @@ def convert_gbdt_common(
             if constants.BASE_PREDICTION in extra_config:
                 extra_config[constants.POST_TRANSFORM] = ApplyTweedieBasePredictionPostTransform(base_prediction)
             else:
-                extra_config[constants.POST_TRANSFORM] = ApplyTweediePostTransform()
+                extra_config[constants.POST_TRANSFORM] = ApplyTweediePostTransform(power=extra_config['tweedie_variance_power'])
         elif extra_config[constants.POST_TRANSFORM] is None:
             extra_config[constants.POST_TRANSFORM] = PostTransform()
         else:
             raise NotImplementedError("Post transform {} not implemeneted yet".format(extra_config[constants.POST_TRANSFORM]))
     elif constants.BASE_PREDICTION in extra_config:
-        extra_config[constants.POST_TRANSFORM] = ApplyBasePredictionPostTransform(base_prediction)
+        extra_config[constants.POST_TRANSFORM] = ApplyBasePredictionPostTransform(base_prediction, power=extra_config['tweedie_variance_power'])
 
     # Generate the tree implementation based on the selected strategy.
     if tree_type == TreeImpl.gemm:

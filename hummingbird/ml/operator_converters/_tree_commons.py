@@ -113,6 +113,8 @@ class ApplyTweediePostTransform(PostTransform):
     def __init__(self, power=1.5):
         self.power = power
     def __call__(self, x):
+        print("-----------------checkpoint-ApplyTweediePostTransform----------------")
+        print(x)
         return torch.sign(x) * torch.pow(torch.abs(x), self.power)
 
 
@@ -122,6 +124,8 @@ class ApplyTweedieBasePredictionPostTransform(PostTransform):
         self.power = power
 
     def __call__(self, x):
+        print("-----------------checkpoint-ApplyTweedieBasePredictionPostTransform----------------")
+        print(self.base_prediction)
         return ApplyTweediePostTransform(power=self.power)(self.base_prediction(x))
 
 
