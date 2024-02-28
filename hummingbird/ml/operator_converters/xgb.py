@@ -137,6 +137,7 @@ def convert_sklearn_xgb_regressor(operator, device, extra_config):
             extra_config[constants.FEATURE_NAMES] = feature_names
     base_prediction = operator.raw_operator.base_score
     if base_prediction is None:
+        print("------------checkpoint-base_predictions--------------------")
         base_prediction = [0.5]
     if type(base_prediction) is float:
         base_prediction = [base_prediction]
