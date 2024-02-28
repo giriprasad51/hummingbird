@@ -142,7 +142,7 @@ def convert_sklearn_xgb_regressor(operator, device, extra_config):
         base_prediction = [base_prediction]
 
     extra_config[constants.BASE_PREDICTION] = base_prediction
-
+    print("-------------checkpoint-1-------------------")
     return convert_gbdt_common(
         operator, tree_infos, _get_tree_parameters, n_features, decision_cond="<", extra_config=extra_config
     )

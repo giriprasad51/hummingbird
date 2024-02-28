@@ -178,6 +178,7 @@ def convert_gbdt_common(
             operator, net_parameters, max_depth, n_features, classes, extra_config=extra_config, decision_cond=decision_cond
         )
     else:  # Remaining possible case: tree_type == TreeImpl.perf_tree_trav.
+        print("-------------checkpoint-2-------------------")
         return PerfectTreeTraversalGBDTImpl(
             operator, net_parameters, max_depth, n_features, classes, extra_config=extra_config, decision_cond=decision_cond
         )
