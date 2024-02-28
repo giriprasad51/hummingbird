@@ -171,12 +171,10 @@ def convert_gbdt_common(
     # Generate the tree implementation based on the selected strategy.
     if tree_type == TreeImpl.gemm:
         print("-------------checkpoint-2-------------------")
-        # return GEMMGBDTImpl(
-        #     operator, net_parameters, n_features, classes, extra_config=extra_config, decision_cond=decision_cond
-        # )
-        return TreeTraversalGBDTImpl(
-            operator, net_parameters, max_depth, n_features, classes, extra_config=extra_config, decision_cond=decision_cond
+        return GEMMGBDTImpl(
+            operator, net_parameters, n_features, classes, extra_config=extra_config, decision_cond=decision_cond
         )
+       
     if tree_type == TreeImpl.tree_trav:
         print("-------------checkpoint-3-------------------")
         return TreeTraversalGBDTImpl(
