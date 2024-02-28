@@ -74,6 +74,8 @@ class ApplyBasePredictionPostTransform(PostTransform):
 
     def __call__(self, x):
         x += self.base_prediction
+        print(self.base_prediction)
+        print(x)
         return x
 
 
