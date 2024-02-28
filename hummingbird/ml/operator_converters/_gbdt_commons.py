@@ -174,7 +174,7 @@ def convert_gbdt_common(
         # return GEMMGBDTImpl(
         #     operator, net_parameters, n_features, classes, extra_config=extra_config, decision_cond=decision_cond
         # )
-        return PerfectTreeTraversalGBDTImpl(
+        return TreeTraversalGBDTImpl(
             operator, net_parameters, max_depth, n_features, classes, extra_config=extra_config, decision_cond=decision_cond
         )
     if tree_type == TreeImpl.tree_trav:
