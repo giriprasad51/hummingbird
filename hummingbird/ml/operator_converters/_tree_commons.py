@@ -88,6 +88,7 @@ class ApplySigmoidPostTransform(PostTransform):
     def __call__(self, x):
         output = torch.sigmoid(x)
         print("-----------------checkpoint-ApplySigmoidPostTransform----------------")
+        print(x,"--------",output)
         return torch.cat([self.one - output, output], dim=1)
 
 
