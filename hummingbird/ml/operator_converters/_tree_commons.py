@@ -65,6 +65,7 @@ class TreeParameters:
 # Post tranform classes.
 class PostTransform:
     def __call__(self, x):
+        print("-----------------checkpoint-PostTransform----------------")
         return x
 
 
@@ -76,6 +77,7 @@ class ApplyBasePredictionPostTransform(PostTransform):
         x += self.base_prediction
         print(self.base_prediction)
         print(x)
+        print("-----------------checkpoint-ApplyBasePredictionPostTransform----------------")
         return x
 
 
@@ -85,6 +87,7 @@ class ApplySigmoidPostTransform(PostTransform):
 
     def __call__(self, x):
         output = torch.sigmoid(x)
+        print("-----------------checkpoint-ApplySigmoidPostTransform----------------")
         return torch.cat([self.one - output, output], dim=1)
 
 
@@ -93,11 +96,13 @@ class ApplySigmoidBasePredictionPostTransform(PostTransform):
         self.base_prediction = ApplyBasePredictionPostTransform(base_prediction)
 
     def __call__(self, x):
+        print("-----------------checkpoint-ApplySigmoidBasePredictionPostTransform----------------")
         return ApplySigmoidPostTransform()(self.base_prediction(x))
 
 
 class ApplySoftmaxPostTransform(PostTransform):
     def __call__(self, x):
+        print("-----------------checkpoint-ApplySoftmaxPostTransform----------------")
         return torch.softmax(x, dim=1)
 
 
@@ -106,6 +111,7 @@ class ApplySoftmaxBasePredictionPostTransform(PostTransform):
         self.base_prediction = ApplyBasePredictionPostTransform(base_prediction)
 
     def __call__(self, x):
+        print("-----------------checkpoint-ApplySoftmaxBasePredictionPostTransform----------------")
         return ApplySoftmaxPostTransform()(self.base_prediction(x))
 
 
