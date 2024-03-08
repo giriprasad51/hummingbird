@@ -556,8 +556,9 @@ class GEMMGBDTImpl(GEMMTreeImpl):
 
     def aggregation(self, x):
         output = torch.squeeze(x).t().view(-1, self.n_gbdt_classes, self.n_trees_per_class).sum(2)
+        print(x)
         print(output)
-        print(self.post_transform)
+        print(self.post_transform(output))
         return self.post_transform(output)
 
 
@@ -592,7 +593,9 @@ class TreeTraversalGBDTImpl(TreeTraversalTreeImpl):
 
     def aggregation(self, x):
         output = x.view(-1, self.n_gbdt_classes, self.n_trees_per_class).sum(2)
-
+        print(x)
+        print(output)
+        print(self.post_transform(output))
         return self.post_transform(output)
 
 
@@ -627,5 +630,7 @@ class PerfectTreeTraversalGBDTImpl(PerfectTreeTraversalTreeImpl):
 
     def aggregation(self, x):
         output = x.view(-1, self.n_gbdt_classes, self.n_trees_per_class).sum(2)
-
+        print(x)
+        print(output)
+        print(self.post_transform(output))
         return self.post_transform(output)
