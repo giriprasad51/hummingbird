@@ -65,6 +65,8 @@ class Executor(torch.nn.Module, object):
             self.max_string_length = extra_config[constants.MAX_STRING_LENGTH]
 
     def forward(self, *inputs):
+        print("-------------checkpoint-forward-------------------")
+        print(*inputs)
         with torch.no_grad():
             assert len(self._input_names) == len(inputs) or (
                 DataFrame is not None
@@ -119,7 +121,7 @@ class Executor(torch.nn.Module, object):
                 else:
                     for i, output_name in enumerate(operator.outputs):
                         variable_map[output_name] = outputs[i]
-
+            print(self._output_names)
             # Prepare and return the output.
             if len(self._output_names) == 1:
                 return variable_map[self._output_names[0]]
