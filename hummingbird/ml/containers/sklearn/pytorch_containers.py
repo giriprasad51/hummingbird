@@ -234,6 +234,7 @@ class PyTorchSklearnContainerClassification(SklearnContainerClassification, PyTo
         import os
         import inspect
         print(os.path.abspath(inspect.getfile(self.model.forward)))
+        print(self.model.forward(*input)[1].cpu().numpy())
         return self.model.forward(*input)[1].cpu().numpy()
 
 
