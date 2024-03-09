@@ -229,6 +229,8 @@ class PyTorchSklearnContainerClassification(SklearnContainerClassification, PyTo
     """
 
     def _predict_proba(self, *input):
+        print("-------------checkpoint-proba-------------------")
+        print(*input)
         return self.model.forward(*input)[1].cpu().numpy()
 
 
