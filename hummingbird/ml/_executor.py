@@ -121,7 +121,7 @@ class Executor(torch.nn.Module, object):
                 else:
                     for i, output_name in enumerate(operator.outputs):
                         variable_map[output_name] = outputs[i]
-            print("self._output_names",self._output_names)
+            print("self._output_names",tuple(variable_map[output_name] for output_name in self._output_names))
             # Prepare and return the output.
             if len(self._output_names) == 1:
                 return variable_map[self._output_names[0]]
