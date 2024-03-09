@@ -321,7 +321,8 @@ class TorchScriptSklearnContainerClassification(PyTorchSklearnContainerClassific
         device = get_device(self.model)
         f = super(TorchScriptSklearnContainerClassification, self)._predict_proba
         f_wrapped = lambda *x: _torchscript_wrapper(device, f, *x, extra_config=self._extra_config)  # noqa: E731
-
+        print("-------------checkpoint-predict-proba------------------")
+        print(*inputs)
         return self._run(f_wrapped, *inputs)
 
 
