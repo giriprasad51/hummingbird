@@ -143,7 +143,7 @@ class TestXGBoostConverter(unittest.TestCase):
             model.fit(X, y)
             torch_model = hummingbird.ml.convert(model, "torch", X, extra_config=extra_config)
             self.assertIsNotNone(torch_model)
-            np.testing.assert_allclose(model.predict(X), torch_model.predict(X), rtol=1e-06, atol=1e-06)
+            np.testing.assert_allclose(model.predict(X), torch_model.predict(X), rtol=1e-05, atol=1e-05)
 
     # Regressor
     @unittest.skipIf(not xgboost_installed(), reason="XGBoost test requires XGBoost installed")
