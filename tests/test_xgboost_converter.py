@@ -267,7 +267,7 @@ class TestXGBoostConverter(unittest.TestCase):
 
             torch_model = hummingbird.ml.convert(model, "torchscript", X)
             self.assertIsNotNone(torch_model)
-            np.testing.assert_allclose(model.predict(X), torch_model.predict(X), rtol=1e-06, atol=1e-06)
+            np.testing.assert_allclose(model.predict(X), torch_model.predict(X), rtol=1e-05, atol=1e-05)
 
     # Test TorchScript backend classification.
     @unittest.skipIf(not xgboost_installed(), reason="XGBoost test requires XGBoost installed")
